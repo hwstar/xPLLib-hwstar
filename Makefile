@@ -84,9 +84,8 @@ dist:
 	cp *.[ch] Makefile *.txt  /tmp/xPLLib
 	mkdir /tmp/xPLLib/examples
 	cp examples/*.[ch] examples/*.txt examples/Makefile /tmp/xPLLib/examples
-
 	CURDIR=`pwd`
-	rm -f ${CURDIR}/web/xPLLib.tgz
-	cd /tmp; tar czf ${CURDIR}/../web/xPLLib.tgz xPLLib
+	rm -f ${CURDIR}/xPLLib.tgz
+	cd /tmp; tar czf ${CURDIR}/../xPLLib.tgz xPLLib
 	cd ${CURDIR}
 	rm -rf /tmp/xPLLib
