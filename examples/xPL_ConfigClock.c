@@ -99,7 +99,8 @@ static void sendClockTick() {
 
 int main(int argc, String argv[]) {
   /* Parse command line parms */
-  if (!xPL_parseCommonArgs(&argc, argv, FALSE)) exit(1);
+  if (!xPL_parseCommonArgs(&argc, argv, FALSE))
+	exit(1);
 
   /* Start xPL up */
   if (!xPL_initialize(xPL_getParsedConnectionType())) {
