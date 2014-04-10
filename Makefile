@@ -4,10 +4,10 @@
 
 #
 # For LINUX, use the following
-CCOPTS = -O2 -DLINUX -pedantic -Wall -g -fno-stack-protector
-LIBS = -lm
-LIBDIR = /usr/local/lib
-INCDIR = /usr/local/include
+#CCOPTS = -O2 -DLINUX -pedantic -Wall -g
+#LIBS = -lm
+#LIBDIR = /usr/local/lib
+#INCDIR = /usr/local/include
 
 
 # For UnixWare systems, use the following
@@ -44,7 +44,7 @@ xPLLib: $(LIB_OBJS) libxPL.so xPL.a
 
 libxPL.so: $(LIB_OBJS)
 	@echo "Creating libxPL.so..."
-	@ld -shared -o libxPL.so $(LIB_OBJS)
+	$(LD) -shared -o libxPL.so $(LIB_OBJS)
 
 xPL.a: $(LIB_OBJS)
 	@echo "Creating xPL.a..."
@@ -52,28 +52,28 @@ xPL.a: $(LIB_OBJS)
 	@ar q xPL.a $(LIB_OBJS)
 
 xPL-utils.o: $(INCLUDES) xPL-utils.c
-	$(LIBCC) -c xPL-utils.c
+	$(LIBCC) $(CFLAGS) -c xPL-utils.c
 
 xPL-config.o: $(INCLUDES) xPL-config.c
-	$(LIBCC) -c xPL-config.c
+	$(LIBCC) $(CFLAGS) -c xPL-config.c
 
 xPL-io.o:	$(INCLUDES) xPL-io.c
-	$(LIBCC) -c xPL-io.c
+	$(LIBCC) $(CFLAGS) -c xPL-io.c
 
 xPL-service.o:	$(INCLUDES) xPL-service.c
-	$(LIBCC) -c xPL-service.c
+	$(LIBCC) $(CFLAGS) -c xPL-service.c
 
 xPL-message.o:	$(INCLUDES) xPL-message.c
-	$(LIBCC) -c xPL-message.c
+	$(LIBCC) $(CFLAGS) -c xPL-message.c
 
 xPL-listeners.o:	$(INCLUDES) xPL-listeners.c
-	$(LIBCC) -c xPL-listeners.c
+	$(LIBCC) $(CFLAGS) -c xPL-listeners.c
 
 xPL-store.o:	$(INCLUDES) xPL-store.c
-	$(LIBCC) -c xPL-store.c
+	$(LIBCC) $(CFLAGS) -c xPL-store.c
 
 xPL-hub.o:	$(INCLUDES) xPL-hub.c
-	$(LIBCC) -c xPL-hub.c
+	$(LIBCC) $(CFLAGS) -c xPL-hub.c
 
 
 clean:
@@ -84,8 +84,9 @@ dist:
 	cp *.[ch] Makefile *.txt  /tmp/xPLLib
 	mkdir /tmp/xPLLib/examples
 	cp examples/*.[ch] examples/*.txt examples/Makefile /tmp/xPLLib/examples
+
 	CURDIR=`pwd`
-	rm -f ${CURDIR}/xPLLib.tgz
-	cd /tmp; tar czf ${CURDIR}/../xPLLib.tgz xPLLib
+	rm -f ${CURDIR}/web/xPLLib.tgz
+	cd /tmp; tar czf ${CURDIR}/../web/xPLLib.tgz xPLLib
 	cd ${CURDIR}
 	rm -rf /tmp/xPLLib
