@@ -44,7 +44,7 @@ statichub: xPL_Hub.o
 	$(LD) -static -o xPL_Hub_static xPL_Hub.o ../xPL.a $(LIBS)
 
 clean:
-	rm -f *.o *.a core ${CMD_LIST}
+	rm -f *.o *.a core ${CMD_LIST} xPL_Hub_static
 
 
 hubdist: rebuild
