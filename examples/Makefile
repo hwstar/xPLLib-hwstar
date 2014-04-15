@@ -38,7 +38,7 @@ CMD_LIST = xPL_Hub xPL_Logger xPL_Clock xPL_ConfigClock xPLSend
 	$(LD) -o $@ $< ../xPL.a $(LIBS)
 
 
-all:	${CMD_LIST} #statichub
+all:	${CMD_LIST} statichub
 
 statichub: xPL_Hub.o
 	$(LD) -static -o xPL_Hub_static xPL_Hub.o ../xPL.a $(LIBS)
